@@ -88,7 +88,7 @@
             }else{
         %>
         <form name="AgregarEstudianteForm" action="datosestudiante.jsp" method="GET">
-            <table border="0" align="center" class="ecologico" style="margin: auto; display: table">
+            <table border="0" align="center" class="general" style="margin: auto; display: table">
                 <thead>
                     <tr>
                         <th colspan="2">Agregar Estudiante</th>

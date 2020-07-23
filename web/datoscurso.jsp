@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Datos Estudiante</title>
+        <title>Datos Curso</title>
         <link href="css/Estilosparatabla.css" rel="stylesheet" type="text/css"/>
         <%!
             String consulta;
@@ -19,13 +19,13 @@
             String s_horas;
             String s_creditos;
             String s_codigo;
-            String s_estado;
+            String s_estados;
             
         %>
     </head>
     <body>
         <%
-            try{
+               try{
                 ConectaBd bd = new ConectaBd();
                 cn = bd.getConnection();
                 
@@ -33,7 +33,7 @@
                 s_idcurso = request.getParameter("f_idcurso");
                 
                 if(s_accion!=null && s_accion.equals("M1")){
-                    consulta = "    select codigo, nombre, horas, credito, estado  "
+                    consulta = "    select codigo, nombre, horas, creditos, estado  "
                                 + " from curso "
                                 + " where"
                                 + " idcurso = " + s_idcurso + "; ";
@@ -43,18 +43,18 @@
                     if (rs.next()) {
         %>
         
-        <form name="EditarCursoForm" action="datoscurso.jsp method="GET">
+        <form name="EditarCursoForm" action="datoscurso.jsp" method="GET">
             <table border="0" align="center">
                 <thead>
                     <tr>
-                        <th colspan="2">Editar Cursos</th>
+                        <th colspan="2">Editar Curso</th>
                         
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Codigo: </td>
-                        <td><input type="text" name="f_codigo" value="<% out.print(rs.getString(1)); %>" maxlength="12" size="11" /></td>
+                        <td><input type="text" name="f_codigo" value="<% out.print(rs.getString(1)); %>" maxlength="10" size="20" /></td>
                     </tr>
                     <tr>
                         <td>Nombre: </td>
@@ -62,15 +62,15 @@
                     </tr>
                     <tr>
                         <td>Horas: </td>
-                        <td><input type="text" name="f_horas" value="<% out.print(rs.getString(3)); %>" maxlength="8" size="8"/></td>
+                        <td><input type="text" name="f_horas" value="<% out.print(rs.getString(3)); %>" maxlength="2" size="8"/></td>
                     </tr>
                     <tr>
-                        <td>Creditos: </td>
-                        <td><input type="text" name="f_creditos" value="<% out.print(rs.getString(4)); %>" maxlength="2" size="4"/></td>
+                        <td>Creditos</td>
+                        <td><input type="text" name="f_creditos" value="<% out.print(rs.getString(4)); %>" maxlength="2" size="11"/></td>
                     </tr>
                     <tr>
                         <td>Estado: </td>
-                        <td><input type="text" name="f_estado" value="<% out.print(rs.getString(5)); %>" maxlength="1" size="2"/></td>
+                        <td><input type="text" name="f_estados" value="<% out.print(rs.getString(5)); %>" maxlength="1" size="2"/></td>
                     </tr>
                     <tr align="center">
                         <td colspan="2">
@@ -98,23 +98,23 @@
                 <tbody>
                     <tr>
                         <td>Codigo: </td>
-                        <td><input type="text" name="f_nombre" value="" maxlength="12" size="11" /></td>
+                        <td><input type="text" name="f_codigo" value="" maxlength="12" size="11" /></td>
                     </tr>
                     <tr>
                         <td>Nombre: </td>
-                        <td><input type="text" name="f_apellidos" value="" maxlength="40" size="20" /></td>
+                        <td><input type="text" name="f_nombre" value="" maxlength="40" size="20" /></td>
                     </tr>
                     <tr>
                         <td>Horas: </td>
-                        <td><input type="text" name="f_dni" value="" maxlength="8" size="8"/></td>
+                        <td><input type="text" name="f_horas" value="" maxlength="8" size="8"/></td>
                     </tr>
                     <tr>
                         <td>Creditos: </td>
-                        <td><input type="text" name="f_codigo" value="" maxlength="2" size="4"/></td>
+                        <td><input type="text" name="f_creditos" value="" maxlength="2" size="4"/></td>
                     </tr>
                     <tr>
                         <td>Estado: </td>
-                        <td><input type="text" name="f_estado" value="" maxlength="1" size="2"/></td>
+                        <td><input type="text" name="f_estados" value="" maxlength="1" size="2"/></td>
                     </tr>
                     <tr align="center">
                         <td colspan="2">
@@ -163,10 +163,10 @@
                         s_nombre = request.getParameter("f_nombre");
                         s_horas = request.getParameter("f_horas");
                         s_creditos = request.getParameter("f_creditos");
-                        s_estado = request.getParameter("f_estado");
+                        s_estados = request.getParameter("f_estados");
                         consulta =  "   insert into "
                                     + " curso(codigo, nombre, horas, creditos, estado) "
-                                    + " values ('"+ s_codigo +"','"+ s_nombre +"','"+ s_horas +"','"+ s_creditos +"','"+ s_estado +"')";
+                                    + " values ('"+ s_codigo +"','"+ s_nombre +"','"+ s_horas +"','"+ s_creditos +"','"+ s_estados +"')";
                         //out.print(consulta);
                         pst = cn.prepareStatement(consulta);
                         pst.executeUpdate();
@@ -175,14 +175,14 @@
                         s_nombre = request.getParameter("f_nombre");
                         s_horas = request.getParameter("f_horas");
                         s_creditos = request.getParameter("f_creditos");
-                        s_estado = request.getParameter("f_estado");
+                        s_estados = request.getParameter("f_estados");
                         consulta = " update  curso  "
                                 + "  set  "
                                 + "  codigo = '"+ s_codigo +"', "
                                 + "  nombre = '"+ s_nombre +"',"
                                 + "  horas = '"+ s_horas +"', "
                                 + "  creditos = '"+ s_creditos +"',"
-                                + "  estado = '"+ s_estado +"' "
+                                + "  estado = '"+ s_estados +"' "
                                 + "  where "
                                 + "  idcurso = "+ s_idcurso +"; ";
                         //out.print(consulta);
@@ -209,8 +209,8 @@
                         <td><%out.print(rs.getString(4));%></td>
                         <td><%out.print(rs.getString(5));%></td>
                         <td><%out.print(rs.getString(6));%></td>
-                        <td><a href="datoscurso.jsp?f_accion=E&f_idestudiante=<%out.print(ide);%>">Eliminar</a></td>
-                        <td><a href="datoscurso.jsp?f_accion=M1&f_idestudiante=<%out.print(ide);%>">Editar</a></td>
+                        <td><a href="datoscurso.jsp?f_accion=E&f_idcurso=<%out.print(ide);%>">Eliminar</a></td>
+                        <td><a href="datoscurso.jsp?f_accion=M1&f_idcurso=<%out.print(ide);%>">Editar</a></td>
 
                     </tr>                    
                     <%
