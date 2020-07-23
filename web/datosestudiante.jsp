@@ -7,6 +7,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Datos Estudiante</title>
+        <link href="css/Estilosparatabla.css" rel="stylesheet" type="text/css"/>
         <%!
             String consulta;
             Connection cn;
@@ -87,7 +88,7 @@
             }else{
         %>
         <form name="AgregarEstudianteForm" action="datosestudiante.jsp" method="GET">
-            <table border="0" align="center">
+            <table border="0" align="center" class="ecologico" style="margin: auto; display: table">
                 <thead>
                     <tr>
                         <th colspan="2">Agregar Estudiante</th>
@@ -128,7 +129,7 @@
         }
         %>
         
-        <table border="1" cellspacing="0" cellpadding="" align = "center">
+        <table border="1" cellspacing="0" cellpadding="" align = "center" class="ecologico" style="margin: auto; display: table">
             <thead>
                 <tr>
                     <th colspan="8">Datos Estudiante</th>
